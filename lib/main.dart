@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:masmas_food/screens/on_boarding_2.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import "./screens/on_boarding_1.dart";
@@ -25,8 +26,9 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          theme: darkTheme,
+          theme: lightTheme,
           home: const OnBoarding1(),
+          routes: {OnBoarding2.routeName: (context) => const OnBoarding2()},
         );
       },
     );

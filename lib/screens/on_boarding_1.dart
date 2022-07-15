@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+import 'package:masmas_food/screens/on_boarding_2.dart';
+import 'package:masmas_food/widgets/button.dart';
 import "package:responsive_sizer/responsive_sizer.dart";
 
 import '../global/app_text_style.dart';
@@ -20,27 +22,33 @@ class OnBoarding1 extends StatelessWidget {
             ),
           ),
           Container(
-            height: 18.h,
+            height: 20.h,
             margin: EdgeInsets.symmetric(horizontal: 20.w),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text(
-                  "Find your Comfort Food here",
-                  style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 22.sp),
-                  textAlign: TextAlign.center,
+                TextWidget(
+                  text: "Find your Comfort Food here",
+                  textStyle: textStyle1,
                 ),
-                TextWidget(text: "Find", textStyle: texttheme1),
-                Text(
-                  "Here you can find a chef or dish for every taste and color. Enjoy!",
-                  style: TextStyle(fontSize: 16.sp),
-                  textAlign: TextAlign.center,
+                TextWidget(
+                  text:
+                      "Here you can find a chef or dish for every taste and color. Enjoy!",
+                  textStyle: textStyle2,
                 ),
-                Container()
               ],
             ),
           ),
+          SizedBox(height: 4.h),
+          Button(
+            text: "Next",
+            height: 8.h,
+            width: 30.w,
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed(OnBoarding2.routeName);
+            },
+          ),
+          SizedBox(height: 8.h),
         ],
       ),
     );
