@@ -1,10 +1,11 @@
 import "package:flutter/material.dart";
-import 'package:masmas_food/screens/on_boarding_2.dart';
-import 'package:masmas_food/widgets/button.dart';
 import "package:responsive_sizer/responsive_sizer.dart";
+
+import './on_boarding_2.dart';
 
 import '../global/app_text_style.dart';
 
+import '../widgets/button.dart';
 import '../widgets/text_widget.dart';
 
 class OnBoarding1 extends StatelessWidget {
@@ -18,7 +19,7 @@ class OnBoarding1 extends StatelessWidget {
           SizedBox(
             height: 60.h,
             child: ClipRRect(
-              child: Image.asset("assets/images/Illustartion.png"),
+              child: Image.asset("assets/images/Illustartion.jpg"),
             ),
           ),
           Container(
