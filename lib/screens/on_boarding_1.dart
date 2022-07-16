@@ -19,7 +19,7 @@ class OnBoarding1 extends StatelessWidget {
           SizedBox(
             height: 60.h,
             child: ClipRRect(
-              child: Image.asset("assets/images/Illustartion.jpg"),
+              child: Image.asset("assets/images/Illustartion.png"),
             ),
           ),
           Container(

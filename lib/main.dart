@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:masmas_food/screens/on_boarding_2.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import "./screens/on_boarding_1.dart";
 import './global/app_color.dart';
+
+import './screens/auth_screen.dart';
+import "./screens/on_boarding_1.dart";
+import './screens/on_boarding_2.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +30,10 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           theme: lightTheme,
           home: const OnBoarding1(),
-          routes: {OnBoarding2.routeName: (context) => const OnBoarding2()},
+          routes: {
+            OnBoarding2.routeName: (context) => const OnBoarding2(),
+            AuthScreen.routeName: ((context) => const AuthScreen()),
+          },
         );
       },
     );

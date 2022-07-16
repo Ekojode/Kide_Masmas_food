@@ -3,6 +3,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../global/app_text_style.dart';
 
+import '../screens/auth_screen.dart';
+
 import '../widgets/button.dart';
 import '../widgets/text_widget.dart';
 
@@ -19,7 +21,7 @@ class OnBoarding2 extends StatelessWidget {
           SizedBox(
             height: 60.h,
             child: ClipRRect(
-              child: Image.asset("assets/images/food_illistration.png"),
+              child: Image.asset("assets/images/food_illistration.jpg"),
             ),
           ),
           Container(
@@ -46,7 +48,7 @@ class OnBoarding2 extends StatelessWidget {
             height: 8.h,
             width: 30.w,
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(OnBoarding2.routeName);
+              Navigator.of(context).pushReplacementNamed(AuthScreen.routeName);
             },
           ),
           SizedBox(height: 8.h),
