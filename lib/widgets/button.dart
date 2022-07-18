@@ -8,13 +8,14 @@ class Button extends StatelessWidget {
   final double width;
   final String text;
   final VoidCallback onTap;
-  const Button(
-      {Key? key,
-      required this.text,
-      required this.onTap,
-      required this.height,
-      required this.width})
-      : super(key: key);
+
+  const Button({
+    Key? key,
+    required this.text,
+    required this.onTap,
+    required this.height,
+    required this.width,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

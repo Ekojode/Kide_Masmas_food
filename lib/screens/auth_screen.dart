@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:masmas_food/screens/on_boarding_2.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:provider/provider.dart';
 
 import '../global/app_text_style.dart';
 import '../global/app_color.dart';
 
-import '../widgets/button.dart';
+import '../screens/on_boarding_2.dart';
+import '../provider/auth_provider.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -23,6 +24,42 @@ class _AuthScreenState extends State<AuthScreen> {
   bool _passwordConfirm = true;
   bool _keepSignedIn = false;
   bool _addToEmailList = false;
+  bool _isLoading = false;
+  final TextEditingController _passwordControl = TextEditingController();
+  final Map<String, String> userAuth = {"userEmail": "", "userPassword": ""};
+
+  @override
+  void dispose() {
+    _passwordControl.dispose();
+    super.dispose();
+  }
+
+  void _submit() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+    setState(() {
+      _isLoading = true;
+    });
+    try {
+      final authAction = Provider.of<Auth>(context, listen: false);
+      _formKey.currentState!.save();
+      if (authMode == AuthMode.signIn) {
+        await authAction.signIn(
+            userAuth["userEmail"]!, userAuth["userPassword"]!);
+      } else {
+        await authAction.signUp(
+            userAuth["userEmail"]!, userAuth["userPassword"]!);
+      }
+    } catch (e) {
+      rethrow;
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+    // Navigator.of(context).pushNamed(DummyScreen.routeName);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +107,20 @@ class _AuthScreenState extends State<AuthScreen> {
                               borderRadius: BorderRadius.circular(15),
                               border: Border.all(color: Colors.grey)),
                           child: TextFormField(
+                            onSaved: (newValue) {
+                              userAuth["userEmail"] = newValue!;
+                            },
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "";
+                              }
+                              if (!RegExp(
+                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                  .hasMatch(value)) {
+                                return "Please enter a valid email!";
+                              }
+                              return null;
+                            },
                             decoration: const InputDecoration(
                                 hintText: "Email",
                                 border: InputBorder.none,
@@ -81,7 +132,20 @@ class _AuthScreenState extends State<AuthScreen> {
                               borderRadius: BorderRadius.circular(15),
                               border: Border.all(color: Colors.grey)),
                           child: TextFormField(
+                            onSaved: ((newValue) {
+                              userAuth["userPassword"] = newValue!;
+                            }),
+                            controller: _passwordControl,
                             obscureText: _passwordObscure,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Please enter a password";
+                              }
+                              if (value.length <= 5) {
+                                return "Please enter a strong password!";
+                              }
+                              return null;
+                            },
                             decoration: InputDecoration(
                               hintText: "Password",
                               border: InputBorder.none,
@@ -118,6 +182,13 @@ class _AuthScreenState extends State<AuthScreen> {
                                     border: Border.all(color: Colors.grey)),
                                 child: TextFormField(
                                   obscureText: _passwordConfirm,
+                                  validator: (value) {
+                                    if (value == "" ||
+                                        value != _passwordControl.text) {
+                                      return "Please ensure passWord is same!";
+                                    }
+                                    return null;
+                                  },
                                   decoration: InputDecoration(
                                     hintText: "Confirm Password",
                                     border: InputBorder.none,
@@ -247,13 +318,39 @@ class _AuthScreenState extends State<AuthScreen> {
               height: 13.h,
               child: Column(
                 children: [
-                  Button(
-                      text: authMode == AuthMode.signIn
+                  GestureDetector(
+                    child: InkWell(
+                      onTap: _isLoading ? null : _submit,
+                      child: Container(
+                        height: 6.h,
+                        width: authMode == AuthMode.signIn ? 30.w : 40.w,
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                              colors: [greenColor1, greenColor2],
+                              begin: Alignment.bottomLeft,
+                              end: Alignment.topRight),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: _isLoading
+                              ? const CircularProgressIndicator.adaptive()
+                              : Text(
+                                  (authMode == AuthMode.signIn
+                                      ? "Login"
+                                      : "Create Account"),
+                                  style: textStyle3,
+                                ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  /*  Button(
+                      text: (authMode == AuthMode.signIn
                           ? "Login"
-                          : "Create Account",
-                      onTap: () {},
+                          : "Create Account"),
+                      onTap: _isLoading ? null : _submit,
                       height: 6.h,
-                      width: authMode == AuthMode.signIn ? 30.w : 40.w),
+                      width: authMode == AuthMode.signIn ? 30.w : 40.w),*/
                   TextButton(
                     onPressed: () {
                       if (authMode == AuthMode.signIn) {

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:masmas_food/provider/auth_provider.dart';
+import 'package:masmas_food/screens/dummy_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import './global/app_color.dart';
@@ -23,19 +26,28 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ResponsiveSizer(
-      builder: (context, orientation, screenType) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: lightTheme,
-          home: const OnBoarding1(),
-          routes: {
-            OnBoarding2.routeName: (context) => const OnBoarding2(),
-            AuthScreen.routeName: ((context) => const AuthScreen()),
-          },
-        );
-      },
-    );
+    return MultiProvider(
+        providers: [
+          Provider<Auth>(
+            create: (context) => Auth(),
+          )
+        ],
+        builder: (context, child) {
+          return ResponsiveSizer(
+            builder: (context, orientation, screenType) {
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: 'Flutter Demo',
+                theme: lightTheme,
+                home: const OnBoarding1(),
+                routes: {
+                  OnBoarding2.routeName: (context) => const OnBoarding2(),
+                  AuthScreen.routeName: ((context) => const AuthScreen()),
+                  DummyScreen.routeName: ((context) => const DummyScreen())
+                },
+              );
+            },
+          );
+        });
   }
 }
