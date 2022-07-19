@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:supabase/supabase.dart';
 
 const apiKey =
@@ -6,15 +7,24 @@ const apiKey =
 const apiUrl = "https://lgorlfkhsfmxsntlocxm.supabase.co";
 
 class Auth with ChangeNotifier {
+  String? accessToken;
+
+  bool get isAuth {
+    return accessToken != null;
+  }
+
   Future<void> signUp(String email, String password) async {
     GotrueSessionResponse response =
         await SupabaseClient(apiUrl, apiKey).auth.signUp(email, password);
 
     if (response.error == null) {
-      final userEmail = response.data!.user!.email;
-      print("Successful sign up for $userEmail");
+      // final userEmail = response.data!.user!.email;
+
+      // print("Successful sign up for $userEmail");
+      // print(response.statusCode);
     } else {
-      print("Error message: ${response.error!.message}");
+      // print("Error message: ${response.error!.message}");
+      // print(response.statusCode);
     }
   }
 
@@ -28,9 +38,11 @@ class Auth with ChangeNotifier {
 
     if (response.error == null) {
       final userEmail = response.data!.user!.email;
-      print("Successful login up for $userEmail");
+      //   print("Successful login up for $userEmail");
+      accessToken = (response.data!.accessToken);
+      notifyListeners();
     } else {
-      print("Error message: ${response.error!.message}");
+      //  print("Error message: ${response.error!.message}");
     }
   }
 }

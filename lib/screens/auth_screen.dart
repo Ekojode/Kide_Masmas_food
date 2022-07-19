@@ -43,6 +43,7 @@ class _AuthScreenState extends State<AuthScreen> {
     });
     try {
       final authAction = Provider.of<Auth>(context, listen: false);
+
       _formKey.currentState!.save();
       if (authMode == AuthMode.signIn) {
         await authAction.signIn(
@@ -318,32 +319,35 @@ class _AuthScreenState extends State<AuthScreen> {
               height: 13.h,
               child: Column(
                 children: [
-                  GestureDetector(
-                    child: InkWell(
-                      onTap: _isLoading ? null : _submit,
-                      child: Container(
-                        height: 6.h,
-                        width: authMode == AuthMode.signIn ? 30.w : 40.w,
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                              colors: [greenColor1, greenColor2],
-                              begin: Alignment.bottomLeft,
-                              end: Alignment.topRight),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                          child: _isLoading
-                              ? const CircularProgressIndicator.adaptive()
-                              : Text(
+                  _isLoading
+                      ? const CircularProgressIndicator(
+                          color: greenColor1,
+                          strokeWidth: 2.0,
+                        )
+                      : GestureDetector(
+                          child: InkWell(
+                            onTap: _submit,
+                            child: Container(
+                              height: 6.h,
+                              width: authMode == AuthMode.signIn ? 30.w : 40.w,
+                              decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                    colors: [greenColor1, greenColor2],
+                                    begin: Alignment.bottomLeft,
+                                    end: Alignment.topRight),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Center(
+                                child: Text(
                                   (authMode == AuthMode.signIn
                                       ? "Login"
                                       : "Create Account"),
                                   style: textStyle3,
                                 ),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
                   /*  Button(
                       text: (authMode == AuthMode.signIn
                           ? "Login"
