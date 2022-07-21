@@ -45,7 +45,6 @@ class MyApp extends StatelessWidget {
                 routes: {
                   OnBoarding2.routeName: (context) => const OnBoarding2(),
                   AuthScreen.routeName: ((context) => const AuthScreen()),
-                  //       HomeScreen.routeName: ((context) => const HomeScreen())
                 },
               );
             },
