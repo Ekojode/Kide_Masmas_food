@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import "../widgets/text_widget.dart";
+import '../global/app_text_style.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -7,8 +10,14 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Find your Favourite Food"),
+        actions: <Widget>[
+          IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
+        ],
+      ),
       body: Column(
-        children: [Row()],
+        children: const [],
       ),
       bottomNavigationBar: BottomNavigationBar(
           unselectedItemColor: Colors.orange,

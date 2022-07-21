@@ -37,10 +37,11 @@ class Auth with ChangeNotifier {
             );
 
     if (response.error == null) {
-      final userEmail = response.data!.user!.email;
+      //  final userEmail = response.data!.user!.email;
       //   print("Successful login up for $userEmail");
-      accessToken = (response.data!.accessToken);
+      accessToken = response.data!.accessToken;
       notifyListeners();
+      // print(accessToken);
     } else {
       //  print("Error message: ${response.error!.message}");
     }

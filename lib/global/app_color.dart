@@ -20,8 +20,11 @@ const darkBgColor = Color(0xff000000);
 const darkTextColor = Color(0xffffffff);
 
 final lightTheme = ThemeData(
-  brightness: Brightness.light,
-);
+    brightness: Brightness.light,
+    appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 0));
 
 final darkTheme = ThemeData(
   brightness: Brightness.dark,

@@ -27,33 +27,31 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider<Auth>(
-            create: (context) => Auth(),
-          )
-        ],
-        builder: (context, child) {
-          return Consumer<Auth>(
-              builder: (context, value, child) => ResponsiveSizer(
-                    builder: (context, orientation, screenType) {
-                      return MaterialApp(
-                        debugShowCheckedModeBanner: false,
-                        title: 'Flutter Demo',
-                        theme: lightTheme,
-                        home: value.isAuth
-                            ? const HomeScreen()
-                            : const OnBoarding1(),
-                        routes: {
-                          OnBoarding2.routeName: (context) =>
-                              const OnBoarding2(),
-                          AuthScreen.routeName: ((context) =>
-                              const AuthScreen()),
-                          HomeScreen.routeName: ((context) =>
-                              const HomeScreen())
-                        },
-                      );
-                    },
-                  ));
-        });
+      providers: [
+        ChangeNotifierProvider<Auth>(
+          create: (context) => Auth(),
+        )
+      ],
+      builder: (context, child) {
+        return Consumer<Auth>(
+          builder: (BuildContext context, auth, Widget? child) =>
+              ResponsiveSizer(
+            builder: (context, orientation, screenType) {
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: 'Masmas Food Delivery',
+                theme: lightTheme,
+                home: auth.isAuth ? const HomeScreen() : const AuthScreen(),
+                routes: {
+                  OnBoarding2.routeName: (context) => const OnBoarding2(),
+                  AuthScreen.routeName: ((context) => const AuthScreen()),
+                  //       HomeScreen.routeName: ((context) => const HomeScreen())
+                },
+              );
+            },
+          ),
+        );
+      },
+    );
   }
 }
