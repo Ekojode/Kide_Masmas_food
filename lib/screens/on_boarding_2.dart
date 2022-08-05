@@ -5,7 +5,7 @@ import '../global/app_text_style.dart';
 
 import '../screens/auth_screen.dart';
 
-import '../widgets/button.dart';
+import '../widgets/action_button.dart';
 import '../widgets/text_widget.dart';
 
 class OnBoarding2 extends StatelessWidget {
@@ -43,14 +43,14 @@ class OnBoarding2 extends StatelessWidget {
             ),
           ),
           SizedBox(height: 4.h),
-          Button(
-            text: "Next",
-            height: 8.h,
-            width: 30.w,
-            onTap: () {
-              Navigator.of(context).pushReplacementNamed(AuthScreen.routeName);
-            },
-          ),
+          ActionButton(
+              height: 8.h,
+              width: 30.w,
+              onTap: () {
+                Navigator.of(context)
+                    .pushReplacementNamed(AuthScreen.routeName);
+              },
+              text: "Next"),
           SizedBox(height: 8.h),
         ],
       ),

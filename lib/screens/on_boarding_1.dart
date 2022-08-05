@@ -5,11 +5,13 @@ import './on_boarding_2.dart';
 
 import '../global/app_text_style.dart';
 
-import '../widgets/button.dart';
+import "../widgets/action_button.dart";
 import '../widgets/text_widget.dart';
 
 class OnBoarding1 extends StatelessWidget {
   const OnBoarding1({Key? key}) : super(key: key);
+
+  static const routeName = "/onboarding1";
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +43,14 @@ class OnBoarding1 extends StatelessWidget {
             ),
           ),
           SizedBox(height: 4.h),
-          Button(
-            text: "Next",
-            height: 8.h,
-            width: 30.w,
-            onTap: () {
-              Navigator.of(context).pushReplacementNamed(OnBoarding2.routeName);
-            },
-          ),
+          ActionButton(
+              height: 8.h,
+              width: 30.w,
+              onTap: () {
+                Navigator.of(context)
+                    .pushReplacementNamed(OnBoarding2.routeName);
+              },
+              text: "Next"),
           SizedBox(height: 8.h),
         ],
       ),

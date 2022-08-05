@@ -7,6 +7,7 @@ import '../global/app_color.dart';
 
 import '../screens/on_boarding_2.dart';
 import '../provider/auth_provider.dart';
+import '../widgets/action_button.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -50,7 +51,7 @@ class _AuthScreenState extends State<AuthScreen> {
             userAuth["userEmail"]!, userAuth["userPassword"]!);
       } else {
         await authAction.signUp(
-            userAuth["userEmail"]!, userAuth["userPassword"]!);
+            userAuth["userEmail"]!, userAuth["userPassword"]!, context);
       }
     } catch (e) {
       rethrow;
@@ -324,37 +325,13 @@ class _AuthScreenState extends State<AuthScreen> {
                           color: greenColor1,
                           strokeWidth: 2.0,
                         )
-                      : GestureDetector(
-                          child: InkWell(
-                            onTap: _submit,
-                            child: Container(
-                              height: 6.h,
-                              width: authMode == AuthMode.signIn ? 30.w : 40.w,
-                              decoration: BoxDecoration(
-                                gradient: const LinearGradient(
-                                    colors: [greenColor1, greenColor2],
-                                    begin: Alignment.bottomLeft,
-                                    end: Alignment.topRight),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  (authMode == AuthMode.signIn
-                                      ? "Login"
-                                      : "Create Account"),
-                                  style: textStyle3,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                  /*  Button(
-                      text: (authMode == AuthMode.signIn
-                          ? "Login"
-                          : "Create Account"),
-                      onTap: _isLoading ? null : _submit,
-                      height: 6.h,
-                      width: authMode == AuthMode.signIn ? 30.w : 40.w),*/
+                      : ActionButton(
+                          height: 6.h,
+                          width: authMode == AuthMode.signIn ? 30.w : 40.w,
+                          onTap: _submit,
+                          text: (authMode == AuthMode.signIn
+                              ? "Login"
+                              : "Create Account")),
                   TextButton(
                     onPressed: () {
                       if (authMode == AuthMode.signIn) {
