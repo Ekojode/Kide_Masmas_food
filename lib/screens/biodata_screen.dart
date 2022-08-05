@@ -36,7 +36,7 @@ class _BioDataScreenState extends State<BioDataScreen> {
 
       _formKey.currentState!.save();
 
-      await authAction.addBiodata(_firstNameController.text,
+      await authAction.updateBiodata(_firstNameController.text,
           _lastNameController.text, _phoneNumberController.text);
     } catch (e) {
       rethrow;

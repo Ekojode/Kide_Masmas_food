@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:masmas_food/screens/auth_screen.dart';
 import 'package:masmas_food/screens/biodata_screen.dart';
-import '../screens/profile_photo_screen.dart';
+import 'package:masmas_food/screens/home_screen.dart';
+import 'package:masmas_food/screens/signup_success_screen.dart';
+
 import 'package:supabase/supabase.dart';
 
 const apiKey =
@@ -13,10 +15,6 @@ final client = SupabaseClient(apiUrl, apiKey);
 class Auth with ChangeNotifier {
   String? accessToken;
   String? userId;
-
-  bool get isAuth {
-    return accessToken != null;
-  }
 
   Future<void> signOut(BuildContext context) async {
     await client.auth.signOut().then((response) {
@@ -54,7 +52,7 @@ class Auth with ChangeNotifier {
         .execute()
         .then((response) {
           if (response.error == null) {
-            Navigator.pushNamed(ctx, ProfilePhoto.routeName);
+            // Navigator.pushNamed(ctx, SignUpSuccess.routeName);
           }
           debugPrint(response.data);
           debugPrint(response.error.toString());
@@ -78,20 +76,27 @@ class Auth with ChangeNotifier {
         });
   }
 
-  Future<void> signIn(String email, String password) async {
-    GotrueSessionResponse response =
-        await SupabaseClient(apiUrl, apiKey).auth.signIn(
-              email: email,
-              password: password,
-              options: AuthOptions(redirectTo: apiUrl),
-            );
+  Future<void> signIn(
+      String email, String password, BuildContext context) async {
+    await SupabaseClient(apiUrl, apiKey)
+        .auth
+        .signIn(
+          email: email,
+          password: password,
+          options: AuthOptions(redirectTo: apiUrl),
+        )
+        .then((response) {
+      if (response.error == null) {
+        accessToken = response.data!.accessToken;
+        debugPrint(accessToken);
 
-    if (response.error == null) {
-      //  final userEmail = response.data!.user!.email;
-      //   print("Successful login up for $userEmail");
-      accessToken = response.data!.accessToken;
-      debugPrint(accessToken);
-      notifyListeners();
-    } else {}
+        notifyListeners();
+        Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+      } else {
+        throw (response.error!.message);
+      }
+    }).catchError((e) {
+      throw e;
+    });
   }
 }

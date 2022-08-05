@@ -12,6 +12,7 @@ import './screens/auth_screen.dart';
 import "./screens/on_boarding_1.dart";
 import './screens/on_boarding_2.dart';
 import './screens/profile_photo_screen.dart';
+import './screens/signup_success_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
                 BioDataScreen.routeName: (context) => const BioDataScreen(),
                 HomeScreen.routeName: (context) => const HomeScreen(),
                 ProfilePhoto.routeName: (ctx) => const ProfilePhoto(),
+                SignUpSuccess.routeName: ((context) => const SignUpSuccess()),
               },
             );
           },

@@ -8,6 +8,7 @@ import '../global/app_color.dart';
 import '../screens/on_boarding_2.dart';
 import '../provider/auth_provider.dart';
 import '../widgets/action_button.dart';
+import '../widgets/error_dialog.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -48,19 +49,26 @@ class _AuthScreenState extends State<AuthScreen> {
       _formKey.currentState!.save();
       if (authMode == AuthMode.signIn) {
         await authAction.signIn(
-            userAuth["userEmail"]!, userAuth["userPassword"]!);
+            userAuth["userEmail"]!, userAuth["userPassword"]!, context);
       } else {
         await authAction.signUp(
             userAuth["userEmail"]!, userAuth["userPassword"]!, context);
       }
     } catch (e) {
+      String errorMessage = e.toString();
+      print("${e.toString()} is the error message");
+      showDialog(
+          context: context,
+          builder: (ctx) {
+            return ErrorDialog(errorMessage: errorMessage);
+          });
+
       rethrow;
     } finally {
       setState(() {
         _isLoading = false;
       });
     }
-    // Navigator.of(context).pushNamed(DummyScreen.routeName);
   }
 
   @override
