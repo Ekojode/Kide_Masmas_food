@@ -27,11 +27,13 @@ class _OverViewScreenScreenState extends State<OverViewScreenScreen> {
   Widget build(BuildContext context) {
     final topSpace = MediaQuery.of(context).padding.top;
     return Scaffold(
-        body: Column(
-          children: [
-            SizedBox(height: topSpace),
-            _screens[_currentIndex],
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: topSpace),
+              _screens[_currentIndex],
+            ],
+          ),
         ),
         bottomNavigationBar: BottomNavBar(
             currentIndex: _currentIndex,

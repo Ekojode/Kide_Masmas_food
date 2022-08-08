@@ -10,11 +10,12 @@ class RestaurantWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // padding: EdgeInsets.all(5),
+      //  margin: EdgeInsets.all(1.h),
       height: 28.h,
       width: 45.w,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
       child: Card(
+        elevation: 4,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: Column(
           children: [
