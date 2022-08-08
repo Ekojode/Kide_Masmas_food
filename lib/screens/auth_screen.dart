@@ -56,7 +56,7 @@ class _AuthScreenState extends State<AuthScreen> {
       }
     } catch (e) {
       String errorMessage = e.toString();
-      print("${e.toString()} is the error message");
+      //print("${e.toString()} is the error message");
       showDialog(
           context: context,
           builder: (ctx) {

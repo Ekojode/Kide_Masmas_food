@@ -33,6 +33,8 @@ dependencies:
   responsive_sizer: ^3.0.8
   supabase: ^0.3.6
   provider: ^6.0.3
+  supabase_flutter: ^0.3.3
+  bottom_navy_bar: ^6.0.0
  
   
 
@@ -77,6 +79,7 @@ flutter:
    - assets/images/Logo.png
    - assets/images/Pattern.png
    - assets/images/google-icon 1.png
+   - assets/images/success.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

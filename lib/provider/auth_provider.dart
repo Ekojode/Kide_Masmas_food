@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:masmas_food/screens/auth_screen.dart';
 import 'package:masmas_food/screens/biodata_screen.dart';
-import 'package:masmas_food/screens/home_screen.dart';
-import 'package:masmas_food/screens/signup_success_screen.dart';
-
+import 'package:masmas_food/screens/overview_screen.dart';
 import 'package:supabase/supabase.dart';
 
 const apiKey =
@@ -91,7 +89,8 @@ class Auth with ChangeNotifier {
         debugPrint(accessToken);
 
         notifyListeners();
-        Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+        Navigator.of(context)
+            .pushReplacementNamed(OverViewScreenScreen.routeName);
       } else {
         throw (response.error!.message);
       }
