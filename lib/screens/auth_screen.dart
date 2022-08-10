@@ -29,10 +29,14 @@ class _AuthScreenState extends State<AuthScreen> {
   bool _isLoading = false;
   final TextEditingController _passwordControl = TextEditingController();
   final Map<String, String> userAuth = {"userEmail": "", "userPassword": ""};
+  final _passwordFocusNode = FocusNode();
+  final _passwordConfirmFocusNode = FocusNode();
 
   @override
   void dispose() {
     _passwordControl.dispose();
+    _passwordFocusNode.dispose();
+    _passwordConfirmFocusNode.dispose();
     super.dispose();
   }
 
@@ -114,8 +118,9 @@ class _AuthScreenState extends State<AuthScreen> {
                         ),
                         Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              border: Border.all(color: Colors.grey)),
+                            borderRadius: BorderRadius.circular(15),
+                            //   border: Border.all(color: greenColor1),
+                          ),
                           child: TextFormField(
                             onSaved: (newValue) {
                               userAuth["userEmail"] = newValue!;
@@ -131,22 +136,32 @@ class _AuthScreenState extends State<AuthScreen> {
                               }
                               return null;
                             },
+                            textInputAction: TextInputAction.next,
+                            onFieldSubmitted: (_) {
+                              FocusScope.of(context)
+                                  .requestFocus(_passwordFocusNode);
+                            },
                             decoration: const InputDecoration(
+                                //      enabledBorder: OutlineInputBorder(),
                                 hintText: "Email",
-                                border: InputBorder.none,
-                                icon: Icon(Icons.mail)),
+                                //     border: InputBorder.none,
+                                icon: Icon(
+                                  Icons.mail,
+                                  color: greenColor1,
+                                )),
                           ),
                         ),
                         Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              border: Border.all(color: Colors.grey)),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
                           child: TextFormField(
                             onSaved: ((newValue) {
                               userAuth["userPassword"] = newValue!;
                             }),
                             controller: _passwordControl,
                             obscureText: _passwordObscure,
+                            focusNode: _passwordFocusNode,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return "Please enter a password";
@@ -156,10 +171,22 @@ class _AuthScreenState extends State<AuthScreen> {
                               }
                               return null;
                             },
+                            textInputAction: authMode == AuthMode.signIn
+                                ? TextInputAction.done
+                                : TextInputAction.next,
+                            onFieldSubmitted: authMode == AuthMode.signIn
+                                ? null
+                                : (_) {
+                                    FocusScope.of(context).requestFocus(
+                                        _passwordConfirmFocusNode);
+                                  },
                             decoration: InputDecoration(
                               hintText: "Password",
-                              border: InputBorder.none,
-                              icon: const Icon(Icons.lock),
+                              //    border: InputBorder.none,
+                              icon: const Icon(
+                                Icons.lock,
+                                color: greenColor1,
+                              ),
                               suffixIcon: IconButton(
                                 onPressed: () {
                                   if (_passwordObscure) {
@@ -188,8 +215,8 @@ class _AuthScreenState extends State<AuthScreen> {
                               )
                             : Container(
                                 decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                    border: Border.all(color: Colors.grey)),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
                                 child: TextFormField(
                                   obscureText: _passwordConfirm,
                                   validator: (value) {
@@ -199,10 +226,13 @@ class _AuthScreenState extends State<AuthScreen> {
                                     }
                                     return null;
                                   },
+                                  textInputAction: TextInputAction.done,
+                                  focusNode: _passwordConfirmFocusNode,
                                   decoration: InputDecoration(
                                     hintText: "Confirm Password",
-                                    border: InputBorder.none,
-                                    icon: const Icon(Icons.lock),
+                                    //     border: InputBorder.none,
+                                    icon: const Icon(Icons.lock,
+                                        color: greenColor1),
                                     suffixIcon: IconButton(
                                       onPressed: () {
                                         if (_passwordConfirm) {
