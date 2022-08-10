@@ -18,14 +18,6 @@ class Restaurant {
   });
 }
 
-final List<Menu> menus = [
-  Menu(
-      title: "Jollof rice",
-      price: 3000,
-      img: "https://theplace.com.ng/wp-content/uploads/2021/06/Intercon.jpg",
-      description: "Sweet Jollof from the place"),
-];
-
 class Restaurants with ChangeNotifier {
   final List<Restaurant> _restaurants = [
     Restaurant(
@@ -115,5 +107,16 @@ class Restaurants with ChangeNotifier {
       }
     }
     return newMenu;
+  }
+
+  List<Restaurant> searchRestaurants(String query) {
+    final searchedRestaurant = _restaurants.where((restaurant) {
+      final titleLower = restaurant.name.toLowerCase();
+      final searchQuery = query.toLowerCase();
+
+      return titleLower.contains(searchQuery);
+    }).toList();
+
+    return searchedRestaurant;
   }
 }
