@@ -120,16 +120,23 @@ class RestaurantSearch extends SearchDelegate<String> {
       return const Text("No results found");
     } else {
       return ListView.builder(
+        padding: const EdgeInsets.symmetric(vertical: 10),
         itemCount: restaurant.length,
         itemBuilder: (context, i) => ListTile(
-          leading: Image.network(
-            restaurant[i].img,
-            fit: BoxFit.cover,
-            width: 50,
-            height: 50,
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.network(
+              restaurant[i].img,
+              fit: BoxFit.cover,
+              width: 50,
+              height: 50,
+            ),
           ),
-          title: Text(restaurant[i].name),
-          subtitle: Text(restaurant[i].distance.toString()),
+          title: Text(
+            restaurant[i].name,
+            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+          ),
+          subtitle: Text(restaurant[i].catchPhrase.toString()),
         ),
       );
     }

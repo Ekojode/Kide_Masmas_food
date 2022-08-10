@@ -4,6 +4,7 @@ import 'package:masmas_food/widgets/menu_grid.dart';
 import 'package:masmas_food/widgets/promo_card.dart';
 import 'package:masmas_food/widgets/restaurant_grid.dart';
 import 'package:masmas_food/widgets/search_widget.dart';
+import 'package:masmas_food/widgets/space_widget.dart';
 
 import '../models/restaurant.dart';
 
@@ -27,10 +28,15 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SearcherWidget(),
+            const SpaceWidget(),
             const PromoCard(),
+            const SpaceWidget(),
             RowTextBtn(text: "Popular Restaurants", onPressed: () {}),
+            const SpaceWidget(),
             RestaurantGrid(restaurants: restaurants),
+            const SpaceWidget(),
             RowTextBtn(text: "Popular Menus", onPressed: () {}),
+            const SpaceWidget(),
             MenuGrid(menu: menus)
           ],
         ),

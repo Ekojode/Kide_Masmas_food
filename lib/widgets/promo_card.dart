@@ -8,7 +8,8 @@ class PromoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 15.h,
+      height: 20.h,
+      width: double.infinity,
       decoration: BoxDecoration(
         color: greenColor2,
         borderRadius: BorderRadius.circular(15),
