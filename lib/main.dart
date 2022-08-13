@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:masmas_food/models/restaurant.dart';
-import 'package:masmas_food/provider/auth_provider.dart';
-import 'package:masmas_food/screens/biodata_screen.dart';
-import 'package:masmas_food/screens/home_screen.dart';
-import 'package:masmas_food/screens/overview_screen.dart';
+
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import './global/app_color.dart';
 
+import './models/restaurant.dart';
+import './provider/auth_provider.dart';
+import './screens/overview_screen.dart';
 import './screens/auth_screen.dart';
 import "./screens/on_boarding_1.dart";
 import './screens/on_boarding_2.dart';
+import './screens/biodata_screen.dart';
 import './screens/profile_photo_screen.dart';
 import './screens/signup_success_screen.dart';
+import './screens/home_screen.dart';
+import './screens/message_screen.dart';
+import './screens/cart_screen.dart';
+import './screens/profile_screen.dart';
+import './screens/menu_detail_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,10 +27,7 @@ void main() {
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitDown,
   ]);
-  // await Supabase.initialize(
-  //     url: "https://lgorlfkhsfmxsntlocxm.supabase.co",
-  //     anonKey:
-  //         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxnb3JsZmtoc2ZteHNudGxvY3htIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTc5Njc0NjIsImV4cCI6MTk3MzU0MzQ2Mn0.xWIuayaOFesJi-OkGcGYRds1y3YbiFoKH9o2qFPUQA0");
+
   runApp(const MyApp());
 }
 
@@ -59,6 +61,11 @@ class MyApp extends StatelessWidget {
                 HomeScreen.routeName: (context) => const HomeScreen(),
                 ProfilePhoto.routeName: (ctx) => const ProfilePhoto(),
                 SignUpSuccess.routeName: ((context) => const SignUpSuccess()),
+                MenuDetailScreen.routeName: ((context) =>
+                    const MenuDetailScreen()),
+                ProfileScreen.routeName: (context) => const ProfileScreen(),
+                MessageScreen.routeName: ((context) => const MessageScreen()),
+                CartScreen.routeName: (context) => const CartScreen()
               },
             );
           },

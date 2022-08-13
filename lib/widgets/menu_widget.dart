@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:masmas_food/global/app_color.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../screens/menu_detail_screen.dart';
 
 import '../models/menu.dart';
 
@@ -17,11 +18,21 @@ class MenuWidget extends StatelessWidget {
         children: [
           SizedBox(height: 1.h),
           ListTile(
-            leading: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                menu.img,
-                fit: BoxFit.cover,
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                MenuDetailScreen.routeName,
+                arguments: menu.id,
+              );
+            },
+            leading: Hero(
+              tag: menu.id,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  menu.img,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             title: FittedBox(

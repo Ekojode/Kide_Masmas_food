@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:masmas_food/screens/auth_screen.dart';
 import 'package:masmas_food/screens/biodata_screen.dart';
+
 import 'package:masmas_food/screens/overview_screen.dart';
 import 'package:supabase/supabase.dart';
 
@@ -90,7 +91,7 @@ class Auth with ChangeNotifier {
 
         notifyListeners();
         Navigator.of(context)
-            .pushReplacementNamed(OverViewScreenScreen.routeName);
+            .pushReplacementNamed(OverViewScreenScreen.routeName, arguments: 0);
       } else {
         throw (response.error!.message);
       }

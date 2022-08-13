@@ -20,8 +20,12 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final restauruant = Provider.of<Restaurants>(context);
     final restaurants = restauruant.restaurants;
+
     final menus = restauruant.menu;
-    return SingleChildScrollView(
+    return /*Scaffold(
+      persistentFooterButtons: const [BottomVBar(pageNum: 1)],
+      body:*/
+        SingleChildScrollView(
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Column(
@@ -41,6 +45,11 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ); /*,
+      // bottomNavigationBar: const BottomNavBar(
+      //   currentIndex: 1,
+      //   routeName: routeName,
+      // ),
+    );*/
   }
 }

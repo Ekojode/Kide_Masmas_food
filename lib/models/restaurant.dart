@@ -31,6 +31,7 @@ class Restaurants with ChangeNotifier {
       distance: 30,
       menu: [
         Menu(
+            id: "a1",
             title: "Jollof rice Chicken",
             price: 3000,
             img:
@@ -46,6 +47,7 @@ class Restaurants with ChangeNotifier {
       catchPhrase: "It's finger licking",
       menu: [
         Menu(
+            id: "a2",
             title: "Jollof rice KFC",
             price: 3000,
             img:
@@ -61,6 +63,7 @@ class Restaurants with ChangeNotifier {
       catchPhrase: "What a delicious experience!",
       menu: [
         Menu(
+            id: "a3",
             title: "Jollof rice Mr",
             price: 3000,
             img:
@@ -76,6 +79,7 @@ class Restaurants with ChangeNotifier {
       catchPhrase: "Sweet Sensations, Hot Temptations",
       menu: [
         Menu(
+            id: "a4",
             title: "Jollof rice Sweet",
             price: 3000,
             img:
@@ -89,14 +93,16 @@ class Restaurants with ChangeNotifier {
           "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/2024px-Burger_King_logo_%281999%29.svg.png",
       distance: 12,
       catchPhrase: "Be Your Way.",
-      menu: [
-        Menu(
-            title: "Jollof rice Burger",
-            price: 3000,
-            img:
-                "https://theplace.com.ng/wp-content/uploads/2021/06/Intercon.jpg",
-            description: "Sweet Jollof from the place"),
-      ],
+      //  menu: [],
+      // menu: [
+      //   Menu(
+      //       id: "a5",
+      //       title: "Jollof rice Burger",
+      //       price: 3000,
+      //       img:
+      //           "https://theplace.com.ng/wp-content/uploads/2021/06/Intercon.jpg",
+      //       description: "Sweet Jollof from the place"),
+      // ],
     )
   ];
 
@@ -106,14 +112,97 @@ class Restaurants with ChangeNotifier {
 
   List<Menu> get menu {
     List<Menu> newMenu = [];
-    for (var element in _restaurants) {
+    final List<String> menuRestaurants = [];
+    for (Restaurant element in _restaurants) {
       if (element.menu != null) {
-        for (var element in element.menu!) {
+        menuRestaurants.add(element.name);
+        for (Menu element in element.menu!) {
           newMenu.add(element);
         }
       }
     }
+
     return newMenu;
+  }
+
+  // void printRest() {
+  //   // print(restaurants[4].menu == null);
+  //   List<Menu> newMenu = [];
+  //   final List<String> menuRestaurants = [];
+  //   print(newMenu.isEmpty);
+  //   for (Restaurant element in _restaurants) {
+  //     if (element.menu != null) {
+  //       menuRestaurants.add(element.name);
+  //       for (Menu element in element.menu!) {
+  //         newMenu.add(element);
+  //       }
+  //     }
+  //   }
+  //   print(menuRestaurants);
+  //   print(newMenu[0].title);
+  // }
+
+  Menu findMenuById(String id) {
+    List<Menu> newMenu = [];
+
+    for (Restaurant element in _restaurants) {
+      if (element.menu != null) {
+        for (Menu elements in element.menu!) {
+          newMenu.add(elements);
+          // final foundMenu =
+          //     element.menu!.firstWhere((element) => elements.id == id);
+        }
+      }
+    }
+    Menu foundMenu = newMenu.firstWhere((element) => element.id == id);
+
+    return foundMenu;
+  }
+
+  Map<String, Menu> findMenuBgyId(String id) {
+    List<Menu> newMenu = [];
+    String restaurant = "";
+    for (Restaurant element in _restaurants) {
+      if (element.menu != null) {
+        for (Menu elements in element.menu!) {
+          newMenu.add(elements);
+          // final foundMenu =
+          //     element.menu!.firstWhere((element) => elements.id == id);
+        }
+      }
+    }
+    Menu foundMenu = newMenu.firstWhere((element) => element.id == id);
+    //  _restaurants.firstWhere((element) => element.menu.firstWhere((element) => element.id == id));
+
+    return {restaurant: foundMenu};
+  }
+
+  List<Menu> rest(String id) {
+    final mean = _restaurants.firstWhere((element) => element.name == id);
+    List<Menu> reso = [];
+    for (var element in mean.menu!) {
+      reso.add(element);
+    }
+    return reso;
+  }
+
+  Restaurant? findMenuRestaurant(String id) {
+    Restaurant? foundRestaurant;
+    for (Restaurant res in _restaurants) {
+      if (res.menu != null) {
+        Menu? chosen = res.menu?.firstWhere((element) => element.id == id);
+        for (Restaurant res in _restaurants) {
+          if (res.menu != null) {
+            for (Menu men in res.menu!) {
+              if (men == chosen) {
+                foundRestaurant = res;
+              }
+            }
+          }
+        }
+      }
+    }
+    return foundRestaurant;
   }
 
   List<Restaurant> searchRestaurants(String query) {

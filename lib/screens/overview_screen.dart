@@ -16,7 +16,7 @@ class OverViewScreenScreen extends StatefulWidget {
 }
 
 class _OverViewScreenScreenState extends State<OverViewScreenScreen> {
-  int _currentIndex = 0;
+  int _currentIndex =0;
   final List _screens = const [
     HomeScreen(),
     CartScreen(),
@@ -25,6 +25,7 @@ class _OverViewScreenScreenState extends State<OverViewScreenScreen> {
   ];
   @override
   Widget build(BuildContext context) {
+   
     final topSpace = MediaQuery.of(context).padding.top;
     return Scaffold(
         body: SingleChildScrollView(
@@ -36,7 +37,10 @@ class _OverViewScreenScreenState extends State<OverViewScreenScreen> {
           ),
         ),
         bottomNavigationBar: BottomNavBar(
-            currentIndex: _currentIndex,
-            onTap: (index) => setState(() => _currentIndex = index)));
+          //    routeName: "",
+          currentIndex: _currentIndex,
+          onTap: (index) => setState(() => _currentIndex = index),
+        ));
+    //
   }
 }
