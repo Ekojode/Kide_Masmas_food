@@ -18,6 +18,7 @@ class MenuDetailScreen extends StatelessWidget {
     final menuId = ModalRoute.of(context)!.settings.arguments as String;
     final provider = Provider.of<Restaurants>(context);
     // final resto = provider.findMenuRestaurant(menuId);
+    final double topSpacing = MediaQuery.of(context).padding.top;
 
     final menu = provider.findMenuById(menuId);
     return Scaffold(
@@ -41,25 +42,24 @@ class MenuDetailScreen extends StatelessWidget {
               //   menu.title,
               //   style: const TextStyle(color: Colors.black),
               // ),
-              background: Hero(
-                tag: menu.id,
-                child: Image.network(
-                  menu.img,
-                  fit: BoxFit.cover,
-                ),
+              background: Column(
+                children: [
+                  SizedBox(height: topSpacing),
+                  Hero(
+                    tag: menu.id,
+                    child: Image.network(
+                      menu.img,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                const SpaceWidget(),
-                //     Text(resto!.name),
-                ElevatedButton(
-                    onPressed: () {
-                      provider.findMenuBgyId(menuId);
-                    },
-                    child: const Text("Omoo")),
+                // const SpaceWidget(),
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 8),
                   child: Row(
@@ -67,7 +67,7 @@ class MenuDetailScreen extends StatelessWidget {
                       Text(
                         "Popular",
                         style: TextStyle(
-                            fontSize: 18.sp,
+                            fontSize: 20.sp,
                             color: greenColor1,
                             fontWeight: FontWeight.bold),
                       ),
@@ -75,7 +75,14 @@ class MenuDetailScreen extends StatelessWidget {
                       const Icon(
                         Icons.location_on,
                         color: greenColor1,
-                      )
+                        size: 30,
+                      ),
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.favorite_outline_outlined,
+                            size: 30,
+                          ))
                     ],
                   ),
                 ),
@@ -87,6 +94,18 @@ class MenuDetailScreen extends StatelessWidget {
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ElevatedButton(
+          onPressed: (() {}),
+          style: ElevatedButton.styleFrom(
+              primary: greenColor1, minimumSize: Size(double.infinity, 7.h)),
+          child: const Text(
+            "Add to Cart",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
       ),
     );
   }

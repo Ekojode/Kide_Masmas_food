@@ -7,9 +7,7 @@ class MessageScreen extends StatelessWidget {
   static const routeName = "/message";
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("Message Screen")),
-      //    bottomNavigationBar: BottomNavBar(currentIndex: 2, routeName: routeName),
-    );
+    return const Center(child: Text("Message Screen"));
+    //    bottomNavigationBar: BottomNavBar(currentIndex: 2, routeName: routeName),
   }
 }
