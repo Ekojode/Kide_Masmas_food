@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:masmas_food/screens/restaurant_detail_screen.dart';
 
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -24,7 +25,7 @@ import './screens/menu_detail_screen.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
 
@@ -65,7 +66,9 @@ class MyApp extends StatelessWidget {
                     const MenuDetailScreen()),
                 ProfileScreen.routeName: (context) => const ProfileScreen(),
                 MessageScreen.routeName: ((context) => const MessageScreen()),
-                CartScreen.routeName: (context) => const CartScreen()
+                CartScreen.routeName: (context) => const CartScreen(),
+                RestaurantDetailScreen.routeName: (context) =>
+                    const RestaurantDetailScreen(),
               },
             );
           },

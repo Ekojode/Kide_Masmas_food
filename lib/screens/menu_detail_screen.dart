@@ -17,6 +17,7 @@ class MenuDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final menuId = ModalRoute.of(context)!.settings.arguments as String;
     final provider = Provider.of<Restaurants>(context);
+    print('passed');
     // final resto = provider.findMenuRestaurant(menuId);
     final double topSpacing = MediaQuery.of(context).padding.top;
 

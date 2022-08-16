@@ -24,6 +24,7 @@ class RestaurantGrid extends StatelessWidget {
             return RestaurantWidget(
               restaurant: restaurants[i],
             );
+            
           }),
     );
   }

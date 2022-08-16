@@ -10,3 +10,7 @@ final textStyle4 = TextStyle(fontSize: 18.sp, color: Colors.grey);
 final textStyle5 = TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold);
 final textStyle6 = TextStyle(fontSize: 14.sp, color: orangeColor1);
 final textStyle7 = TextStyle(fontSize: 21.sp, fontWeight: FontWeight.bold);
+final textStyle8 = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.bold,
+    color: const Color(0xFF3B3B3B));
