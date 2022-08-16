@@ -3,6 +3,7 @@ import '../models/location.dart';
 import '../models/menu.dart';
 
 class Restaurant {
+  final String id;
   final String name;
   final String img;
   final String catchPhrase;
@@ -11,6 +12,7 @@ class Restaurant {
   final PlaceLocation? location;
 
   Restaurant({
+    required this.id,
     required this.name,
     required this.img,
     required this.catchPhrase,
@@ -23,6 +25,7 @@ class Restaurant {
 class Restaurants with ChangeNotifier {
   final List<Restaurant> _restaurants = [
     Restaurant(
+      id: "r1",
       name: "Chicken Republic",
       catchPhrase: "Extra-ordinary chicken for extra- ordinary people",
       img:
@@ -40,6 +43,7 @@ class Restaurants with ChangeNotifier {
       ],
     ),
     Restaurant(
+      id: "r2",
       name: "KFC",
       img:
           "https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/KFC_logo.svg/1200px-KFC_logo.svg.png",
@@ -56,6 +60,7 @@ class Restaurants with ChangeNotifier {
       ],
     ),
     Restaurant(
+      id: "r3",
       name: "Mr Biggs",
       img:
           "https://seeklogo.com/images/M/Mr_Biggs-logo-40C29C44C4-seeklogo.com.png",
@@ -72,6 +77,7 @@ class Restaurants with ChangeNotifier {
       ],
     ),
     Restaurant(
+      id: "r4",
       name: "Sweet sensation",
       img:
           "https://www.vmcdn.ca/f/files/alimoshotoday/sweet-sensation-logo.png",
@@ -88,6 +94,7 @@ class Restaurants with ChangeNotifier {
       ],
     ),
     Restaurant(
+      id: "r5",
       name: "Burger King",
       img:
           "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/2024px-Burger_King_logo_%281999%29.svg.png",
@@ -186,23 +193,27 @@ class Restaurants with ChangeNotifier {
     return reso;
   }
 
-  Restaurant? findMenuRestaurant(String id) {
-    Restaurant? foundRestaurant;
-    for (Restaurant res in _restaurants) {
-      if (res.menu != null) {
-        Menu? chosen = res.menu?.firstWhere((element) => element.id == id);
-        for (Restaurant res in _restaurants) {
-          if (res.menu != null) {
-            for (Menu men in res.menu!) {
-              if (men == chosen) {
-                foundRestaurant = res;
-              }
-            }
-          }
+  void switchFavouriteStatus(String id) {
+    List<Menu> newMenu = [];
+
+    for (Restaurant element in _restaurants) {
+      if (element.menu != null) {
+        for (Menu elements in element.menu!) {
+          newMenu.add(elements);
         }
       }
     }
-    return foundRestaurant;
+    Menu foundMenu = newMenu.firstWhere((element) => element.id == id);
+
+    foundMenu.isFavourite = !foundMenu.isFavourite;
+    notifyListeners();
+  }
+
+  Restaurant findMenuRestaurant(Menu menu) {
+    var test =
+        _restaurants.firstWhere((element) => element.menu!.contains(menu));
+
+    return test;
   }
 
   List<Restaurant> searchRestaurants(String query) {

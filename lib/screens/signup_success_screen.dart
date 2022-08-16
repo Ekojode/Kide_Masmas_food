@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:masmas_food/screens/overview_screen.dart';
 import '../widgets/success_widget.dart';
-import '../screens/home_screen.dart';
 
 class SignUpSuccess extends StatelessWidget {
   const SignUpSuccess({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class SignUpSuccess extends StatelessWidget {
     return Success(
         successMessage: "Your Sign Up Process is Complete",
         action: () {
-          Navigator.of(context).pushNamed(HomeScreen.routeName);
+          Navigator.of(context).pushNamed(OverViewScreenScreen.routeName);
         },
         actionMessage: "Go to Home");
   }

@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-class Menu with ChangeNotifier {
+class Menu {
   final String id;
   final String title;
   final double price;
@@ -16,9 +14,4 @@ class Menu with ChangeNotifier {
     required this.description,
     this.isFavourite = false,
   });
-
-  void switchFavouriteStatus(Menu menu) {
-    menu.isFavourite = !menu.isFavourite;
-    notifyListeners();
-  }
 }

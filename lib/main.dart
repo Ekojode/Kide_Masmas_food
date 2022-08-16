@@ -7,6 +7,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import './global/app_color.dart';
 
 import './models/restaurant.dart';
+import './provider/cart.dart';
 import './provider/auth_provider.dart';
 import './screens/overview_screen.dart';
 import './screens/auth_screen.dart';
@@ -15,7 +16,6 @@ import './screens/on_boarding_2.dart';
 import './screens/biodata_screen.dart';
 import './screens/profile_photo_screen.dart';
 import './screens/signup_success_screen.dart';
-import './screens/home_screen.dart';
 import './screens/message_screen.dart';
 import './screens/cart_screen.dart';
 import './screens/profile_screen.dart';
@@ -24,7 +24,7 @@ import './screens/menu_detail_screen.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
 
@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<Cart>(create: (context) => Cart()),
         ChangeNotifierProvider<Auth>(create: (context) => Auth()),
         ChangeNotifierProvider<Restaurants>(
             create: ((context) => Restaurants()))
@@ -58,7 +59,6 @@ class MyApp extends StatelessWidget {
                 BioDataScreen.routeName: (context) => const BioDataScreen(),
                 OverViewScreenScreen.routeName: (context) =>
                     const OverViewScreenScreen(),
-                HomeScreen.routeName: (context) => const HomeScreen(),
                 ProfilePhoto.routeName: (ctx) => const ProfilePhoto(),
                 SignUpSuccess.routeName: ((context) => const SignUpSuccess()),
                 MenuDetailScreen.routeName: ((context) =>

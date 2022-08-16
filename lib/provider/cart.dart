@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:masmas_food/models/restaurant.dart';
 import "../models/menu.dart";
 
 class CartItem {
@@ -7,12 +8,14 @@ class CartItem {
   final int quantity;
   final String imgUrl;
   final String title;
+  final Restaurant restaurant;
   CartItem(
       {required this.id,
       required this.price,
       required this.quantity,
       required this.imgUrl,
-      required this.title});
+      required this.title,
+      required this.restaurant});
 }
 
 class Cart with ChangeNotifier {
@@ -22,7 +25,7 @@ class Cart with ChangeNotifier {
     return _cartItems;
   }
 
-  void addCartItem(Menu menuItem) {
+  void addCartItem(Menu menuItem, Restaurant restaurant) {
     if (_cartItems.containsKey(menuItem.id)) {
       return;
     } else {
@@ -30,10 +33,12 @@ class Cart with ChangeNotifier {
           menuItem.id,
           () => CartItem(
               id: DateTime.now().toIso8601String(),
+              restaurant: restaurant,
               price: menuItem.price,
               quantity: 1,
               imgUrl: menuItem.img,
               title: menuItem.title));
+      notifyListeners();
     }
   }
 
@@ -43,11 +48,13 @@ class Cart with ChangeNotifier {
         id,
         (cartItem) => CartItem(
             id: cartItem.id,
+            restaurant: cartItem.restaurant,
             price: cartItem.price,
             quantity: cartItem.quantity + 1,
             imgUrl: cartItem.imgUrl,
             title: cartItem.title),
       );
+      notifyListeners();
     }
   }
 
@@ -57,11 +64,17 @@ class Cart with ChangeNotifier {
         id,
         (cartItem) => CartItem(
             id: cartItem.id,
+            restaurant: cartItem.restaurant,
             price: cartItem.price,
             quantity: cartItem.quantity - 1,
             imgUrl: cartItem.imgUrl,
             title: cartItem.title),
       );
+      notifyListeners();
     }
+  }
+
+  int get cartQuantity {
+    return _cartItems.length;
   }
 }

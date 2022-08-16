@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:masmas_food/global/app_color.dart';
+import 'package:masmas_food/widgets/badge.dart';
+import 'package:provider/provider.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import '../provider/cart.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int currentIndex;
@@ -33,7 +37,18 @@ class BottomNavBar extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             BottomNavyBarItem(
-              icon: const Icon(Icons.shopping_cart),
+              icon: Consumer<Cart>(
+                builder: (BuildContext context, cart, Widget? child) {
+                  return Badge(
+                    value: cart.cartQuantity.toString(),
+                    color: greenColor1,
+                    child: const Icon(
+                      Icons.shopping_cart,
+                      size: 30,
+                    ),
+                  );
+                },
+              ),
               title: const Text(
                 'Cart',
               ),

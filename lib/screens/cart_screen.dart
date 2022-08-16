@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:masmas_food/screens/home_screen.dart';
-//import 'package:masmas_food/widgets/bottom_bar.dart';
+import '../widgets/cart_grid.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -8,16 +7,13 @@ class CartScreen extends StatelessWidget {
   static const routeName = "/cartScreen";
   @override
   Widget build(BuildContext context) {
-    return /*const Scaffold(
-      body: */
-        Center(
-            child: TextButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(HomeScreen.routeName);
-                },
-                child: const Text("Push Home")));
-    //    persistentFooterButtons: [BottomVBar(pageNum: 2)],
-    // bottomNavigationBar: BottomNavBar(currentIndex: 2, routeName: routeName),
-    //   );
+    return Column(
+      children: [
+        const Expanded(child: CartGrid()),
+        const Spacer(),
+        ElevatedButton(
+            onPressed: () {}, child: const Text("Proceed to Check Out"))
+      ],
+    );
   }
 }
