@@ -122,7 +122,7 @@ class MenuDetailScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: ElevatedButton(
           onPressed: () {
-            cart.addCartItem(menu, restaurant);
+            cart.addCartItem(menu, restaurant, context);
           },
           style: ElevatedButton.styleFrom(
               primary: greenColor1, minimumSize: Size(double.infinity, 7.h)),

@@ -5,7 +5,7 @@ const lightBgColor = Color(0xffFFFFFF);
 const lightTextColor = Color(0xff000000);
 
 //Colors that apply to both themes
-const pimaryColor = Color(0xffffffff);
+const primaryColor = Color(0xffffffff);
 const greenColor1 = Color(0xff4de48a);
 const greenColor2 = Color(0xff1dc479);
 const redColor1 = Color(0xffFF4B4B);

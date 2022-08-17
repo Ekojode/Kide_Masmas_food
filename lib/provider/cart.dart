@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:masmas_food/models/restaurant.dart';
 import "../models/menu.dart";
+import '../widgets/snack_bar.dart';
 
 class CartItem {
   final String id;
@@ -25,9 +26,9 @@ class Cart with ChangeNotifier {
     return _cartItems;
   }
 
-  void addCartItem(Menu menuItem, Restaurant restaurant) {
+  void addCartItem(Menu menuItem, Restaurant restaurant, BuildContext context) {
     if (_cartItems.containsKey(menuItem.id)) {
-      return;
+      ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
     } else {
       _cartItems.putIfAbsent(
           menuItem.id,
@@ -54,8 +55,10 @@ class Cart with ChangeNotifier {
             imgUrl: cartItem.imgUrl,
             title: cartItem.title),
       );
+
       notifyListeners();
     }
+    notifyListeners();
   }
 
   void cartItemDecrement(String id) {
@@ -72,6 +75,7 @@ class Cart with ChangeNotifier {
       );
       notifyListeners();
     }
+    notifyListeners();
   }
 
   int get cartQuantity {

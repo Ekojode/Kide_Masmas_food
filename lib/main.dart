@@ -17,9 +17,9 @@ import './screens/biodata_screen.dart';
 import './screens/profile_photo_screen.dart';
 import './screens/signup_success_screen.dart';
 import './screens/message_screen.dart';
-import './screens/cart_screen.dart';
 import './screens/profile_screen.dart';
 import './screens/menu_detail_screen.dart';
+import './screens/restaurant_detail_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -65,7 +65,8 @@ class MyApp extends StatelessWidget {
                     const MenuDetailScreen()),
                 ProfileScreen.routeName: (context) => const ProfileScreen(),
                 MessageScreen.routeName: ((context) => const MessageScreen()),
-                CartScreen.routeName: (context) => const CartScreen()
+                RestaurantDetailScreen.routeName: (context) =>
+                    const RestaurantDetailScreen()
               },
             );
           },

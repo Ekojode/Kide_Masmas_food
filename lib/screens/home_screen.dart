@@ -14,8 +14,6 @@ import '../widgets/row_text_button.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
-  static const routeName = "/home";
-
   @override
   Widget build(BuildContext context) {
     final restauruant = Provider.of<Restaurants>(context);

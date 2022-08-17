@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:masmas_food/screens/cart_screen.dart';
+import 'package:masmas_food/widgets/cart_screen_widget.dart';
 import 'package:masmas_food/screens/message_screen.dart';
 import 'package:masmas_food/screens/profile_screen.dart';
 import 'package:masmas_food/widgets/bottom_nav.dart';
@@ -20,7 +20,7 @@ class _OverViewScreenScreenState extends State<OverViewScreenScreen> {
 
   final List _screens = const [
     HomeScreen(),
-    CartScreen(),
+    CartScreenWidget(),
     MessageScreen(),
     ProfileScreen()
   ];

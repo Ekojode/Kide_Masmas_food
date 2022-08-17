@@ -10,16 +10,17 @@ class Restaurant {
   final int distance;
   final List<Menu>? menu;
   final PlaceLocation? location;
+  final double? rating;
 
-  Restaurant({
-    required this.id,
-    required this.name,
-    required this.img,
-    required this.catchPhrase,
-    this.location,
-    required this.distance,
-    this.menu,
-  });
+  Restaurant(
+      {required this.id,
+      required this.name,
+      required this.img,
+      required this.catchPhrase,
+      this.location,
+      required this.distance,
+      this.menu,
+      this.rating});
 }
 
 class Restaurants with ChangeNotifier {
@@ -130,6 +131,13 @@ class Restaurants with ChangeNotifier {
     }
 
     return newMenu;
+  }
+
+  Restaurant findRestaurantById(String id) {
+    Restaurant foundRestaurant =
+        _restaurants.firstWhere((element) => element.id == id);
+
+    return foundRestaurant;
   }
 
   // void printRest() {
