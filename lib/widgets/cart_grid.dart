@@ -18,7 +18,9 @@ class CartGrid extends StatelessWidget {
         ? SizedBox(
             height: 80.h,
             child: Center(
-              child: Lottie.asset("assets/lotties/42176-empty-cart.json"),
+              child: SizedBox(
+                  height: 40.h,
+                  child: Lottie.asset("assets/lotties/42176-empty-cart.json")),
             ),
           )
         : SizedBox(

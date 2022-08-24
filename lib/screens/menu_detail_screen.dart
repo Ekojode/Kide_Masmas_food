@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:masmas_food/models/restaurant.dart';
 import 'package:masmas_food/screens/cart_screen.dart';
+
+import 'package:masmas_food/widgets/space_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../provider/cart.dart';
 
 import '../global/app_color.dart';
@@ -21,7 +24,7 @@ class MenuDetailScreen extends StatelessWidget {
     final provider = Provider.of<Restaurants>(context);
     final menu = provider.findMenuById(menuId);
     final restaurant = provider.findMenuRestaurant(menu);
-    //final double topSpacing = MediaQuery.of(context).padding.top;
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -60,7 +63,7 @@ class MenuDetailScreen extends StatelessWidget {
                   Navigator.pop(context);
                 },
               ),
-              expandedHeight: 36.h,
+              expandedHeight: 50.h,
               pinned: true,
               flexibleSpace: Stack(
                 children: [
@@ -96,6 +99,7 @@ class MenuDetailScreen extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 8),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
@@ -136,30 +140,73 @@ class MenuDetailScreen extends StatelessWidget {
                         ],
                       ),
                       Row(
-                        children: [Text(restaurant.name)],
+                        children: [
+                          Text(restaurant.name),
+                          SizedBox(
+                            height: 4.h,
+                            width: 40.w,
+                            child: FittedBox(
+                              fit: BoxFit.cover,
+                              child: RatingBar(
+                                  initialRating: 4,
+                                  itemCount: 5,
+                                  ratingWidget: RatingWidget(
+                                      empty: const Icon(
+                                        Icons.star_border,
+                                        color: Color(0xffFFD700),
+                                      ),
+                                      half: const Icon(
+                                        Icons.star_half,
+                                        color: Color(0xffFFD700),
+                                      ),
+                                      full: const Icon(
+                                        Icons.star,
+                                        color: Color(0xffFFD700),
+                                      )),
+                                  onRatingUpdate: (rating) {}),
+                            ),
+                          )
+                        ],
                       ),
+                      const SpaceWidget(),
+                      Text(
+                        "Description",
+                        style: TextStyle(
+                            fontSize: 20.sp, fontWeight: FontWeight.bold),
+                      ),
+                      const SpaceWidget(),
+                      Text(
+                        "Enjoy 10 pieces of Soulfully Spiced Fried Chicken with your choice of 6 portions of Spaghetti, Fried Rice, Jollof Rice or Rice & Beans plus 4 portions of Dodo Cubes, Moin Moin or Coleslaw and 6 PET drinks",
+                        style: TextStyle(
+                          fontSize: 17.sp,
+                        ),
+                      ),
+                      const SpaceWidget(),
+                      Text(
+                        "Reviews",
+                        style: TextStyle(
+                            fontSize: 20.sp, fontWeight: FontWeight.bold),
+                      ),
+                      //  ReviewWidget(),
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 200.h,
-                )
               ],
             ),
           ),
         ],
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         child: ElevatedButton(
           onPressed: () {
             cart.addCartItem(menu, restaurant, context);
           },
           style: ElevatedButton.styleFrom(
               primary: greenColor1, minimumSize: Size(double.infinity, 7.h)),
-          child: const Text(
+          child: Text(
             "Add to Cart",
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.sp),
           ),
         ),
       ),
