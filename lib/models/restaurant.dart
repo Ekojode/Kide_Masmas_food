@@ -140,23 +140,6 @@ class Restaurants with ChangeNotifier {
     return foundRestaurant;
   }
 
-  // void printRest() {
-  //   // print(restaurants[4].menu == null);
-  //   List<Menu> newMenu = [];
-  //   final List<String> menuRestaurants = [];
-  //   print(newMenu.isEmpty);
-  //   for (Restaurant element in _restaurants) {
-  //     if (element.menu != null) {
-  //       menuRestaurants.add(element.name);
-  //       for (Menu element in element.menu!) {
-  //         newMenu.add(element);
-  //       }
-  //     }
-  //   }
-  //   print(menuRestaurants);
-  //   print(newMenu[0].title);
-  // }
-
   Menu findMenuById(String id) {
     List<Menu> newMenu = [];
 
@@ -174,24 +157,6 @@ class Restaurants with ChangeNotifier {
     return foundMenu;
   }
 
-  Map<String, Menu> findMenuBgyId(String id) {
-    List<Menu> newMenu = [];
-    String restaurant = "";
-    for (Restaurant element in _restaurants) {
-      if (element.menu != null) {
-        for (Menu elements in element.menu!) {
-          newMenu.add(elements);
-          // final foundMenu =
-          //     element.menu!.firstWhere((element) => elements.id == id);
-        }
-      }
-    }
-    Menu foundMenu = newMenu.firstWhere((element) => element.id == id);
-    //  _restaurants.firstWhere((element) => element.menu.firstWhere((element) => element.id == id));
-
-    return {restaurant: foundMenu};
-  }
-
   List<Menu> rest(String id) {
     final mean = _restaurants.firstWhere((element) => element.name == id);
     List<Menu> reso = [];
@@ -201,7 +166,21 @@ class Restaurants with ChangeNotifier {
     return reso;
   }
 
-  void switchFavouriteStatus(String id) {
+  bool menuStatus(String id) {
+    List<Menu> newMenu = [];
+
+    for (Restaurant element in _restaurants) {
+      if (element.menu != null) {
+        for (Menu elements in element.menu!) {
+          newMenu.add(elements);
+        }
+      }
+    }
+    Menu foundMenu = newMenu.firstWhere((element) => element.id == id);
+    return foundMenu.isFavourite;
+  }
+
+  void switchMenuFavouriteStatus(String id) {
     List<Menu> newMenu = [];
 
     for (Restaurant element in _restaurants) {

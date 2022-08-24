@@ -21,91 +21,115 @@ class MenuDetailScreen extends StatelessWidget {
     final provider = Provider.of<Restaurants>(context);
     final menu = provider.findMenuById(menuId);
     final restaurant = provider.findMenuRestaurant(menu);
-    final double topSpacing = MediaQuery.of(context).padding.top;
+    //final double topSpacing = MediaQuery.of(context).padding.top;
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            actions: [
-              IconButton(
+              // backgroundColor: Colors.green[900],
+              actions: [
+                IconButton(
                   onPressed: () {},
                   icon: Consumer<Cart>(
                     builder: (BuildContext context, cart, Widget? child) {
                       return Badge(
                         value: cart.cartQuantity.toString(),
-                        color: greenColor1,
+                        color: greenColor2,
                         child: const Icon(
                           Icons.shopping_cart,
-                          size: 30,
+                          size: 28,
+                          color: orangeColor1,
                         ),
                       );
                     },
-                  ))
-            ],
-            leading: IconButton(
-              icon: const Icon(
-                Icons.arrow_back_ios_new,
-                color: orangeColor1,
+                  ),
+                )
+              ],
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.arrow_back_ios_new,
+                  color: orangeColor2,
+                  size: 28,
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            pinned: true,
-            expandedHeight: 40.h,
-            flexibleSpace: FlexibleSpaceBar(
-              collapseMode: CollapseMode.pin,
-              title: const Text(
-                "data",
-                style: TextStyle(color: Colors.black),
-              ),
-              stretchModes: const [StretchMode.blurBackground],
-              centerTitle: true,
-              background: Column(
+              expandedHeight: 36.h,
+              pinned: true,
+              flexibleSpace: Stack(
                 children: [
-                  SizedBox(height: topSpacing),
-                  Hero(
-                    tag: menu.id,
-                    child: Image.network(
-                      menu.img,
-                      fit: BoxFit.cover,
+                  Positioned.fill(
+                    child: Hero(
+                      tag: menu.id,
+                      child: Image.network(
+                        menu.img,
+                        fit: BoxFit.cover,
+                        colorBlendMode: BlendMode.darken,
+                      ),
                     ),
                   ),
+                  Positioned(
+                    bottom: -6,
+                    left: 0,
+                    right: 0,
+                    child: Container(
+                      height: 7.h,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(25),
+                        ),
+                      ),
+                    ),
+                  )
                 ],
-              ),
-            ),
-          ),
+              )),
           SliverList(
             delegate: SliverChildListDelegate(
               [
                 Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                  ),
                   margin: const EdgeInsets.symmetric(horizontal: 8),
                   child: Row(
                     children: [
                       Text(
-                        "Popular",
+                        menu.title,
                         style: TextStyle(
-                            fontSize: 20.sp,
-                            color: greenColor1,
-                            fontWeight: FontWeight.bold),
+                            fontSize: 18.sp, fontWeight: FontWeight.bold),
                       ),
                       const Spacer(),
                       IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.location_on,
-                            color: greenColor1,
-                            size: 30,
-                          )),
-                      IconButton(
-                          onPressed: () {
-                            provider.switchFavouriteStatus(menuId);
-                          },
-                          icon: Icon(
-                            Icons.favorite_outline_outlined,
-                            size: 30,
-                            color: menu.isFavourite ? Colors.red : null,
-                          ))
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.location_on,
+                          color: greenColor1,
+                          size: 30,
+                        ),
+                      ),
+                      Consumer<Restaurants>(
+                        builder: (BuildContext context, value, Widget? child) {
+                          return IconButton(
+                            onPressed: () {
+                              provider.switchMenuFavouriteStatus(menuId);
+                            },
+                            icon: Icon(
+                              value.menuStatus(menuId)
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              size: 30,
+                              color:
+                                  value.menuStatus(menuId) ? Colors.red : null,
+                            ),
+                          );
+                        },
+                        // child:
+                      )
                     ],
                   ),
                 ),

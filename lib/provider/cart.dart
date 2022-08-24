@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import 'package:masmas_food/models/restaurant.dart';
+import '../global/app_color.dart';
 import "../models/menu.dart";
-import '../widgets/snack_bar.dart';
 
 class CartItem {
   final String id;
@@ -29,6 +29,12 @@ class Cart with ChangeNotifier {
   void addCartItem(Menu menuItem, Restaurant restaurant, BuildContext context) {
     if (_cartItems.containsKey(menuItem.id)) {
       ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("${menuItem.title} is already in cart"),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: greenColor2,
+        duration: const Duration(milliseconds: 6000),
+      ));
     } else {
       _cartItems.putIfAbsent(
           menuItem.id,
@@ -41,6 +47,11 @@ class Cart with ChangeNotifier {
               title: menuItem.title));
       notifyListeners();
     }
+  }
+
+  void deleteCartItem(Menu menuItem) {
+    _cartItems.removeWhere((key, value) => key == menuItem.id);
+    notifyListeners();
   }
 
   void cartItemIncrement(String id) {

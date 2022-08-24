@@ -28,6 +28,9 @@ class CartGrid extends StatelessWidget {
                 cartProvider.cartItemIncrement(cartKeys[i]);
               },
               cartDecrement: () {
+                if (cartList[i].quantity < 2) {
+                  return;
+                }
                 cartProvider.cartItemDecrement(cartKeys[i]);
               },
             );
