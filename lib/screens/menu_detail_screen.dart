@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:masmas_food/global/app_text_style.dart';
+
 import 'package:masmas_food/models/restaurant.dart';
-import 'package:masmas_food/widgets/text_widget.dart';
+import 'package:masmas_food/screens/cart_screen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:provider/provider.dart';
 import '../provider/cart.dart';
@@ -28,20 +28,25 @@ class MenuDetailScreen extends StatelessWidget {
           SliverAppBar(
               // backgroundColor: Colors.green[900],
               actions: [
-                IconButton(
-                  onPressed: () {},
-                  icon: Consumer<Cart>(
-                    builder: (BuildContext context, cart, Widget? child) {
-                      return Badge(
-                        value: cart.cartQuantity.toString(),
-                        color: greenColor2,
-                        child: const Icon(
-                          Icons.shopping_cart,
-                          size: 28,
-                          color: orangeColor1,
-                        ),
-                      );
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, CartScreen.routeName);
                     },
+                    icon: Consumer<Cart>(
+                      builder: (BuildContext context, cart, Widget? child) {
+                        return Badge(
+                          value: cart.cartQuantity.toString(),
+                          color: greenColor2,
+                          child: const Icon(
+                            Icons.shopping_cart,
+                            size: 28,
+                            color: orangeColor1,
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 )
               ],
@@ -89,51 +94,53 @@ class MenuDetailScreen extends StatelessWidget {
             delegate: SliverChildListDelegate(
               [
                 Container(
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    ),
-                  ),
                   margin: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Row(
+                  child: Column(
                     children: [
-                      Text(
-                        menu.title,
-                        style: TextStyle(
-                            fontSize: 18.sp, fontWeight: FontWeight.bold),
-                      ),
-                      const Spacer(),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.location_on,
-                          color: greenColor1,
-                          size: 30,
-                        ),
-                      ),
-                      Consumer<Restaurants>(
-                        builder: (BuildContext context, value, Widget? child) {
-                          return IconButton(
-                            onPressed: () {
-                              provider.switchMenuFavouriteStatus(menuId);
-                            },
-                            icon: Icon(
-                              value.menuStatus(menuId)
-                                  ? Icons.favorite
-                                  : Icons.favorite_border,
+                      Row(
+                        children: [
+                          Text(
+                            menu.title,
+                            style: TextStyle(
+                                fontSize: 18.sp, fontWeight: FontWeight.bold),
+                          ),
+                          const Spacer(),
+                          IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.location_on,
+                              color: greenColor1,
                               size: 30,
-                              color:
-                                  value.menuStatus(menuId) ? Colors.red : null,
                             ),
-                          );
-                        },
-                        // child:
-                      )
+                          ),
+                          Consumer<Restaurants>(
+                            builder:
+                                (BuildContext context, value, Widget? child) {
+                              return IconButton(
+                                onPressed: () {
+                                  provider.switchMenuFavouriteStatus(menuId);
+                                },
+                                icon: Icon(
+                                  value.menuStatus(menuId)
+                                      ? Icons.favorite
+                                      : Icons.favorite_border,
+                                  size: 30,
+                                  color: value.menuStatus(menuId)
+                                      ? Colors.red
+                                      : null,
+                                ),
+                              );
+                            },
+                            // child:
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [Text(restaurant.name)],
+                      ),
                     ],
                   ),
                 ),
-                TextWidget(text: menu.title, textStyle: textStyle1),
                 SizedBox(
                   height: 200.h,
                 )

@@ -10,6 +10,7 @@ import './models/restaurant.dart';
 import './provider/cart.dart';
 import './provider/auth_provider.dart';
 import './screens/overview_screen.dart';
+import './screens/cart_screen.dart';
 import './screens/auth_screen.dart';
 import "./screens/on_boarding_1.dart";
 import './screens/on_boarding_2.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
                 OnBoarding2.routeName: (context) => const OnBoarding2(),
                 AuthScreen.routeName: (context) => const AuthScreen(),
                 BioDataScreen.routeName: (context) => const BioDataScreen(),
+                CartScreen.routeName: (context) => const CartScreen(),
                 OverViewScreenScreen.routeName: (context) =>
                     const OverViewScreenScreen(),
                 ProfilePhoto.routeName: (ctx) => const ProfilePhoto(),

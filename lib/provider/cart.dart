@@ -92,4 +92,9 @@ class Cart with ChangeNotifier {
   int get cartQuantity {
     return _cartItems.length;
   }
+
+  void clearCart() {
+    _cartItems.clear();
+    notifyListeners();
+  }
 }
