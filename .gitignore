@@ -48,3 +48,7 @@ app.*.map.json
 # /android/app/src/main/AndroidManifest.xml
 /android/
 /test/
+pubspec.lock/
+analysis_options.yaml/
+.metadata/
+.gitignore/
