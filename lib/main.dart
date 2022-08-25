@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:masmas_food/screens/restaurant_detail_screen.dart';
+import 'package:masmas_food/screens/googlemap_screen.dart';
 
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -69,6 +70,7 @@ class MyApp extends StatelessWidget {
                 CartScreen.routeName: (context) => const CartScreen(),
                 RestaurantDetailScreen.routeName: (context) =>
                     const RestaurantDetailScreen(),
+                GoogleMapScreen.routeName: (context) => const GoogleMapScreen(),
               },
             );
           },

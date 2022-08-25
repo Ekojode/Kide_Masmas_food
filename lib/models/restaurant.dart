@@ -32,7 +32,8 @@ class Restaurants with ChangeNotifier {
       catchPhrase: "Extra-ordinary chicken for extra- ordinary people",
       img:
           "https://www.applyforajob.org/wp-content/uploads/2019/02/Chicken-Republic-Logo.jpg",
-      location: PlaceLocation(latitude: 23.3, longitude: 12.4),
+      location: PlaceLocation(
+          latitude: 6.640711970164805, longitude: 3.369001995300256),
       distance: 30,
       rating: 4.8,
       menu: [
@@ -53,6 +54,8 @@ class Restaurants with ChangeNotifier {
       distance: 12,
       catchPhrase: "It's finger licking",
       rating: 4.8,
+      location: PlaceLocation(
+          latitude: 6.638651191481367, longitude: 3.3697993229932166),
       menu: [
         Menu(
             id: "a2",
@@ -71,6 +74,8 @@ class Restaurants with ChangeNotifier {
       distance: 22,
       catchPhrase: "What a delicious experience!",
       rating: 4.8,
+      location: PlaceLocation(
+          latitude: 6.610235897295476, longitude: 3.3182841885403485),
       menu: [
         Menu(
             id: "a3",
@@ -89,6 +94,8 @@ class Restaurants with ChangeNotifier {
       distance: 45,
       catchPhrase: "Sweet Sensations, Hot Temptations",
       rating: 4.8,
+      location: PlaceLocation(
+          latitude: 6.610065377060151, longitude: 3.3090144749515527),
       menu: [
         Menu(
             id: "a4",
@@ -106,6 +113,8 @@ class Restaurants with ChangeNotifier {
           "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/2024px-Burger_King_logo_%281999%29.svg.png",
       distance: 12,
       rating: 4.8,
+      location: PlaceLocation(
+          latitude: 6.5079080403969245, longitude: 3.3785346988254887),
       catchPhrase: "Be Your Way.",
       menu: [
         Menu(

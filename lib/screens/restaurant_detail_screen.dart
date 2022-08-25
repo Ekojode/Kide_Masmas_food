@@ -10,6 +10,8 @@ import 'package:masmas_food/widgets/text_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import 'googlemap_screen.dart';
+
 class RestaurantDetailScreen extends StatelessWidget {
   const RestaurantDetailScreen({Key? key}) : super(key: key);
   static const routeName = "/RestaurantDetailScreen";
@@ -86,6 +88,11 @@ class RestaurantDetailScreen extends StatelessWidget {
                 ),
               ),
               TextWidget(text: restaurant.name, textStyle: textStyle1),
+              GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, GoogleMapScreen.routeName);
+                  },
+                  child: const Text('Map')),
               Row(
                 children: [
                   const Icon(
