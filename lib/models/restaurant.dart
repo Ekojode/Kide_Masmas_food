@@ -101,16 +101,7 @@ class Restaurants with ChangeNotifier {
           "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/2024px-Burger_King_logo_%281999%29.svg.png",
       distance: 12,
       catchPhrase: "Be Your Way.",
-      //  menu: [],
-      // menu: [
-      //   Menu(
-      //       id: "a5",
-      //       title: "Jollof rice Burger",
-      //       price: 3000,
-      //       img:
-      //           "https://theplace.com.ng/wp-content/uploads/2021/06/Intercon.jpg",
-      //       description: "Sweet Jollof from the place"),
-      // ],
+   
     )
   ];
 
@@ -132,6 +123,8 @@ class Restaurants with ChangeNotifier {
 
     return newMenu;
   }
+
+  
 
   Restaurant findRestaurantById(String id) {
     Restaurant foundRestaurant =

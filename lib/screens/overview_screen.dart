@@ -3,6 +3,7 @@ import 'package:masmas_food/widgets/cart_screen_widget.dart';
 import 'package:masmas_food/screens/message_screen.dart';
 import 'package:masmas_food/screens/profile_screen.dart';
 import 'package:masmas_food/widgets/bottom_nav.dart';
+import '../widgets/favourites_screen.dart';
 
 import 'home_screen.dart';
 
@@ -20,27 +21,28 @@ class _OverViewScreenScreenState extends State<OverViewScreenScreen> {
 
   final List _screens = const [
     HomeScreen(),
+    FavouritesScreen(),
     CartScreenWidget(),
     MessageScreen(),
-    ProfileScreen()
+    ProfileScreen(),
   ];
   @override
   Widget build(BuildContext context) {
     final topSpace = MediaQuery.of(context).padding.top;
     return Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(height: topSpace),
-              _screens[_currentIndex],
-            ],
-          ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: topSpace),
+            _screens[_currentIndex],
+          ],
         ),
-        bottomNavigationBar: BottomNavBar(
-          //    routeName: "",
-          currentIndex: _currentIndex,
-          onTap: (index) => setState(() => _currentIndex = index),
-        ));
-    //
+      ),
+      bottomNavigationBar: BottomNavBar(
+        //    routeName: "",
+        currentIndex: _currentIndex,
+        onTap: (index) => setState(() => _currentIndex = index),
+      ),
+    );
   }
 }

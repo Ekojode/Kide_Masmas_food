@@ -33,9 +33,14 @@ class BottomNavBar extends StatelessWidget {
             BottomNavyBarItem(
               icon: const Icon(Icons.home),
               title: const Text('Home'),
-              activeColor: Colors.red,
+              activeColor: greenColor1,
               textAlign: TextAlign.center,
             ),
+            BottomNavyBarItem(
+                icon: const Icon(Icons.favorite),
+                title: const Text("Favourites"),
+                activeColor: Colors.red,
+                textAlign: TextAlign.center),
             BottomNavyBarItem(
               icon: Consumer<Cart>(
                 builder: (BuildContext context, cart, Widget? child) {
@@ -56,8 +61,8 @@ class BottomNavBar extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             BottomNavyBarItem(
-              icon: const Icon(Icons.message),
-              title: const Text('Messages'),
+              icon: const Icon(Icons.notifications),
+              title: const Text('Notifications'),
               activeColor: Colors.blue,
               textAlign: TextAlign.center,
             ),

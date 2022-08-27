@@ -16,7 +16,7 @@ class CartGrid extends StatelessWidget {
     final cartKeys = cart.keys.toList();
     return cartList.isEmpty
         ? SizedBox(
-            height: 80.h,
+            height: 78.h,
             child: Center(
               child: SizedBox(
                   height: 40.h,
@@ -24,7 +24,7 @@ class CartGrid extends StatelessWidget {
             ),
           )
         : SizedBox(
-            height: 80.h,
+            height: 78.h,
             child: ListView.builder(
                 itemCount: cartList.length,
                 itemBuilder: (context, i) {
