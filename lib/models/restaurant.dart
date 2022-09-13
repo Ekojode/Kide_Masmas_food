@@ -101,12 +101,26 @@ class Restaurants with ChangeNotifier {
           "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Burger_King_logo_%281999%29.svg/2024px-Burger_King_logo_%281999%29.svg.png",
       distance: 12,
       catchPhrase: "Be Your Way.",
-   
     )
   ];
 
   List<Restaurant> get restaurants {
     return _restaurants;
+  }
+
+  List<Menu> get favouriteMenus {
+    final favouriteMenu = <Menu>[];
+    for (Restaurant res in _restaurants) {
+      final menu = res.menu;
+      if (menu != null) {
+        for (Menu favMenu in menu) {
+          if (favMenu.isFavourite) {
+            favouriteMenu.add(favMenu);
+          }
+        }
+      }
+    }
+    return favouriteMenu;
   }
 
   List<Menu> get menu {
@@ -123,8 +137,6 @@ class Restaurants with ChangeNotifier {
 
     return newMenu;
   }
-
-  
 
   Restaurant findRestaurantById(String id) {
     Restaurant foundRestaurant =

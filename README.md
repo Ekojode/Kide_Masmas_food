@@ -1,16 +1,14 @@
-# masmas_food
+#  Kide_MasMas_Food_App
+**Simple Food Delivery Application Built Using Flutter and Dart**
 
-A new Flutter project.
+A simple order on demand food delivery application built using Flutter and Dart
 
-## Getting Started
+State Management: Provider,
 
-This project is a starting point for a Flutter application.
+Backend : SupaBase, 
 
-A few resources to get you started if this is your first Flutter project:
+This application consists of simple reusable widgets and easy to understand and well structured code.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Kide MasMas Food App!](./assets/images/4.png)
+![Kide MasMas Food App!](./assets/images/5.png)
+![Kide MasMas Food App!](./assets/images/6.png)
